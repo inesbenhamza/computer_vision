@@ -6,7 +6,7 @@ from monai.apps import MedNISTDataset
 from medNIST import download_dataset, transform_image
 from torch.utils.data import random_split
 from models import SimpleCNN
-from utils import save_model
+from model_utils import save_model
 
 
 training_data = download_dataset(root_dir="./data/MedNIST")
