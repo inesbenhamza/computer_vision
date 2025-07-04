@@ -1,0 +1,42 @@
+import torch
+import torch.utils.data as DataLoader
+from torch.utils.data import DataLoader
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix  
+from medNIST import MedNISTDataset, transform_image
+from torch.utils.data import random_split
+from train_monai2D import SimpleCNN  # Assuming SimpleCNN is defined in train_monai2D.py”
+
+
+#spliting for test 
+testing_data = MedNISTDataset(root_dir="./data/MedNIST", section="test", transform=transform_image())
+total_size_test = len(testing_data)
+test_size = int(0.1 * total_size_test) 
+test_data, _ = random_split(testing_data, [test_size, total_size_test - test_size])
+
+test_loader = DataLoader(dataset = test_data, batch_size = 32, shuffle = True)
+
+
+model = SimpleCNN(num_classes=6)
+model.load_state_dict(torch.load("simple_cnn.pth")) 
+model.eval()
+
+
+all_preds, all_labels = [], []
+
+with torch.no_grad():
+    for batch in test_loader:
+        images = batch["image"]
+        labels = batch["label"]
+        outputs = model(images)
+        _, preds = torch.max(outputs, 1)
+
+        all_preds.extend(preds.cpu().numpy())
+        all_labels.extend(labels.cpu().numpy())
+
+
+accuracy = accuracy_score(all_labels, all_preds)
+print(f"\n Test Accuracy: {accuracy:.4f}")
+print("\nClassification Report:")
+print(classification_report(all_labels, all_preds))
+print("\n Confusion Matrix:")
+print(confusion_matrix(all_labels, all_preds))
