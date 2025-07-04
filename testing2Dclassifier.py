@@ -2,7 +2,7 @@ import torch
 from torch.utils.data import DataLoader, random_split
 from monai.apps import MedNISTDataset
 from medNIST import transform_image
-from models import SimpleCNN
+from model import SimpleCNN
 from utils import load_model, evaluate_model
 
 testing_data = MedNISTDataset(root_dir="./data/MedNIST", section="test", transform=transform_image())
