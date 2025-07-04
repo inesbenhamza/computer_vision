@@ -5,7 +5,7 @@ from monai.data import DataLoader
 from monai.apps import MedNISTDataset
 from medNIST import download_dataset, transform_image
 from torch.utils.data import random_split
-from models import SimpleCNN
+from model import SimpleCNN
 from model_utils import save_model
 
 
