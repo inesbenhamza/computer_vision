@@ -14,4 +14,4 @@ test_loader = DataLoader(dataset=test_data, batch_size=32, shuffle=True)
 model = SimpleCNN(num_classes=6)
 model = load_model(model, "simple_cnn.pth")
 
-evaluate_model(model, test_loader, class_names=testing_data.class_names)
+evaluate_model(model, test_loader, class_names=["AbdomenCT", "BreastMRI", "ChestCT", "CXR", "HeadCT", "Hand"])  
