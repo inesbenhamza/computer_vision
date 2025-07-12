@@ -1,0 +1,15 @@
+names:
+- cat
+- chicken
+- cow
+- dog
+- fox
+- goat
+- horse
+- person
+- racoon
+- skunk
+nc: 10
+test: /Users/inesbenhamza/Desktop/computer vision /Opencv_test/animals.v1i.yolov8/test/images
+train: /tmp/train_subset
+val: /Users/inesbenhamza/Desktop/computer vision /Opencv_test/animals.v1i.yolov8/valid/images
