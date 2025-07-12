@@ -1,0 +1,7 @@
+openai-agents
+python-dotenv
+transformers torch
+
+
+#if done with ollama then install ollama with brew 
+#brew install ollama  
